@@ -1,0 +1,16 @@
+PODS:
+  - MGDataBinder (1.0.0)
+
+DEPENDENCIES:
+  - MGDataBinder (= 1.0.0)
+
+SPEC REPOS:
+  trunk:
+    - MGDataBinder
+
+SPEC CHECKSUMS:
+  MGDataBinder: a76cb619b111eacb15a3ae09f583b4831d5d7f7b
+
+PODFILE CHECKSUM: bd0b42b85f62812c97b7f14cfd106244245e8789
+
+COCOAPODS: 1.10.0
