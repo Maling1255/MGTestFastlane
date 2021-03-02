@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     
-    self.name.text = @"马领 1.0.0";
+    self.name.text = @"马领 1.0.1";
 }
 
 
