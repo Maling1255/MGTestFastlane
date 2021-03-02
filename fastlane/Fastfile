@@ -76,6 +76,7 @@ platform :ios do
 	puts "👉 开始打包"
 	# 开始打包
 	gym(
+		workspace: "#{scheme}.xcworkspace",
 		scheme: scheme,
 		
 		# 是否清空以前的编译信息 true：是

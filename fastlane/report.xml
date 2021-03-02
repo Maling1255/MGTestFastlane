@@ -5,52 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.004289">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000533">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: import_from_git" time="5.080719">
+      <testcase classname="fastlane.lanes" name="1: import_from_git" time="6.804761">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Verifying fastlane version" time="0.002973">
+      <testcase classname="fastlane.lanes" name="2: Verifying fastlane version" time="0.004635">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: default_platform" time="0.000899">
+      <testcase classname="fastlane.lanes" name="3: default_platform" time="0.003196">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: get_build_number" time="0.925233">
+      <testcase classname="fastlane.lanes" name="4: get_build_number" time="0.877937">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.508493">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.661425">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: get_build_number" time="1.451567">
+      <testcase classname="fastlane.lanes" name="6: get_build_number" time="1.031736">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: gym" time="60.231402">
+      <testcase classname="fastlane.lanes" name="7: gym" time="73.809912">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: pgyer" time="6.264731">
+      <testcase classname="fastlane.lanes" name="8: pgyer" time="3.178262">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: mg_send_email" time="2.085629">
+      <testcase classname="fastlane.lanes" name="9: mg_send_email" time="2.188014">
         
       </testcase>
     
