@@ -1,0 +1,159 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# require 'net/smtp'	
+
+import_from_git(
+	url: 'https://github.com/Maling1255/MGActionLanes.git', 
+	branch: 'main', 
+	path: 'fastlane/ios_fastfile.rb'
+	)
+
+# 定义fastlane版本号
+fastlane_version "2.171.0" 
+
+# 定义打包平台
+default_platform :ios
+
+# 构建 build 号
+def updateProjectBuildNumber
+	currentTime = Time.new.strftime("%Y%m%d%H%M")
+
+	# 获取已经构建的版本号
+	build = get_build_number()
+	if build.include?"#{currentTime[0...8]}"
+		# => 为当天版本 计算迭代版本号
+		lastStr = build[build.length-2..build.length-1]
+		lastNum = lastStr.to_i
+		lastNum = lastNum + 1
+		lastStr = lastNum.to_s
+		  if lastNum < 10
+		   lastStr = lastStr.insert(0,"0")
+		  end
+		build = "#{currentTime}.#{lastStr}"
+	else
+		# => 非当天版本 build 号重置
+		build = "#{currentTime}.01"
+	end
+	puts("👉 *************| 更新build #{build} |*************")
+	# => 更改项目 build 号
+	increment_build_number(build_number: "#{build}")
+end
+
+
+
+# 获取环境变量的值, ENV在当前目录用隐藏文件表示, 防止被随便修改
+scheme = ENV['SCHEME_NAME']
+
+# 任务脚本
+platform :ios do
+
+
+	desc "打包ipa包，以及上传蒲公英发送邮件信息"
+	lane :development_build do|options|
+	branch = options[:branch]
+	
+	puts "👉 准备建立新的build版本号"
+	
+	#更改项目build号
+	updateProjectBuildNumber 
+	
+	puts "👉 开始打包"
+	# 开始打包
+	gym(
+		scheme: scheme,
+		
+		# 是否清空以前的编译信息 true：是
+		clean: true,
+		# 指定打包方式，Release 或者 Debug
+		configuration: ENV['GYM_CONFIGURATION'],
+		# 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
+		export_method: ENV['GYM_EXPORT_METHOD'],
+		#输出的ipa名称
+		output_name: "#{scheme}_#{get_build_number()}",
+		# 指定输出文件夹
+		output_directory:"./fastlane/build",
+	)
+	
+
+	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
+	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
+	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
+	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
+
+
+	puts "👉 开始上传蒲公英"
+
+	# 开始上传蒲公英
+	pgyer(
+		api_key: ENV['PGY_API_KEY'],
+		user_key: ENV['PGY_USER_KEY'],
+		update_description: ENV['PGY_UPDATE_DESCRIPTION'], 
+      	password: ENV['PGY_INSTALL_PASSWORD'], 
+      	install_type: ENV['PGY_INSTALL_TYPE'],
+		)
+	puts "👉 上传蒲公英完成"
+
+
+
+
+
+	# -------------------------- 发送邮件 ---------------------------
+	puts "👉开始发送邮件"
+	# Action.sh "pwd"
+	# Action.sh "phthon ios_send_email.py"
+
+	# 拼接邮件显示的内容
+	
+	# 二维码
+	appQRCodeURL = "http://www.pgyer.com/app/qrcode/NrfR?sign=TE9DIWHs1jnM2mcAaYWPhr59YiCIm%252BOvjmlT5lmD1u7%252Bf6AWmJuo4vkGdC75ulYs"
+	downloadUrl = "http://www.pgyer.com/NrfR"
+	installPassword = ENV['PGY_INSTALL_PASSWORD']
+
+    environsString = '<h3>本次打包相关信息</h3><p>'
+    environsString += "修改了2个bug,优化了3个页面， 重构了登录页面"
+    environsString += '<p><img src="' + appQRCodeURL + '" style="width:150px;height:150px"></p>'
+    # environsString += '<p>ipa 包下载地址 : ' + 'wudizhi' + '<p>'
+    environsString += '<p>蒲公英网站在线安装 : ' + downloadUrl + '   密码 : ' + installPassword + '<p>'
+    # environsString += '<li><a target="_blank" href="itms-services://?action=download-manifest&url=https://ssl.pgyer.com/app/plist/' + str(appKey) + '">点我直接安装</a></li>'
+    message_body = environsString
+
+	mg_send_email(
+               stmp_server: "smtp.qq.com",
+               user_name:"951684507@qq.com",
+               password:"ubbtqklyrscdbdhc",
+               # 接收者邮箱
+               recipients: ['3178769613@qq.com', 'malgee@163.com', '1271969681@qq.com'],
+               subject:"iOS端测试打包完成,准备测试",
+               message_body:message_body,
+               )
+
+
+
+	end
+
+	error do |lane, exception|
+    	UI.message(exception.message)
+    	mg_send_email(
+               stmp_server: "smtp.qq.com",
+               user_name:"951684507@qq.com",
+               password:"ubbtqklyrscdbdhc",
+               recipients: ['951684507@qq.com'],
+               subject:"打包失败了，请检查原因",
+               message_body:"#{exception.message}",
+               )
+   end
+end
+

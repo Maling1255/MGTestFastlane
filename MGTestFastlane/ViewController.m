@@ -8,6 +8,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *name;
 
 @end
 
@@ -15,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    self.name.text = @"马领 1.0.0";
 }
 
 
