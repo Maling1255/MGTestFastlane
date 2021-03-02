@@ -15,6 +15,7 @@
 
 # require 'net/smtp'	
 
+# 远程git引用
 import_from_git(
 	url: 'https://github.com/Maling1255/MGActionLanes.git', 
 	branch: 'main', 
@@ -65,6 +66,8 @@ platform :ios do
 	lane :development_build do|options|
 	branch = options[:branch]
 	
+	puts("👉 ************* branch分支 #{branch} *************")
+
 	puts "👉 准备建立新的build版本号"
 	
 	#更改项目build号
