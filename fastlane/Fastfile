@@ -88,10 +88,10 @@ platform :ios do
 	)
 	
 
-	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
-	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
-	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
-	build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
+	# build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
+	# build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "development", output_directory: "./fastlane/package", configuration: "Debug")
+	# build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
+	# build_app(workspace: "SchoolBased.xcworkspace", scheme: "SchoolBased", export_method: "ad-hoc", output_directory: "./fastlane/package", configuration: "Release_Adhoc")
 
 
 	puts "👉 开始上传蒲公英"

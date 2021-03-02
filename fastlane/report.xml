@@ -5,52 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000563">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000534">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: import_from_git" time="14.950325">
+      <testcase classname="fastlane.lanes" name="1: import_from_git" time="4.832055">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Verifying fastlane version" time="0.0005">
+      <testcase classname="fastlane.lanes" name="2: Verifying fastlane version" time="0.001465">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: default_platform" time="0.000317">
+      <testcase classname="fastlane.lanes" name="3: default_platform" time="0.001875">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: get_build_number" time="5.537367">
+      <testcase classname="fastlane.lanes" name="4: get_build_number" time="0.793516">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.535118">
+      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="1.361402">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: get_build_number" time="0.730287">
+      <testcase classname="fastlane.lanes" name="6: get_build_number" time="0.647614">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: gym" time="67.869818">
+      <testcase classname="fastlane.lanes" name="7: gym" time="62.180525">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: pgyer" time="3.105752">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="9: mg_send_email" time="1.459904">
+      <testcase classname="fastlane.lanes" name="8: mg_send_email" time="0.98355">
         
       </testcase>
     
