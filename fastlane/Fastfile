@@ -126,11 +126,11 @@ platform :ios do
 	downloadUrl = "http://www.pgyer.com/NrfR"
 	installPassword = ENV['PGY_INSTALL_PASSWORD']
 
-    environsString = '<h3>本次打包相关信息</h3><p>'
+    environsString = '<h3>本次打包相关信息</h3>'
     environsString += "修改了2个bug,优化了3个页面， 重构了登录页面"
-    environsString += '<p><img src="' + appQRCodeURL + '" style="width:150px;height:150px"></p>'
+    environsString += '<p><img src="' + appQRCodeURL + '" style="width:150px;height:150px">扫描二维码安装</p>'
     # environsString += '<p>ipa 包下载地址 : ' + 'wudizhi' + '<p>'
-    environsString += '<p>蒲公英网站在线安装 : ' + downloadUrl + '   密码 : ' + installPassword + '<p>'
+    environsString += '<div><span>或者蒲公英网站在线安装 : </span>' + '<a target="_blank" herf=' + downloadUrl + '>点我直接安装</a>' + '<span>   密码 : ' + installPassword + '</span>'+ '</div>'
     # environsString += '<li><a target="_blank" href="itms-services://?action=download-manifest&url=https://ssl.pgyer.com/app/plist/' + str(appKey) + '">点我直接安装</a></li>'
     message_body = environsString
 
